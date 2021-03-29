@@ -7,7 +7,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('Lb5v+X5Hr1gdHa+6yFkWcxpPLlfCXVMqG+QXUIvjCN0HmftdNNl8NixyyDBmOGzVjNGzNGiB2koW10I8SEzSxijriRGZR1/G9n6FgqDvsLXrT2h++Y8LyYUYGadiOGixYj30nBHYnRAXwRmpdiU2FAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('97ea021104b6a2182af981ae780d0fb0')
 
-json = []
+json = {}
 
 @app.route('/')
 def hello():
@@ -20,14 +20,12 @@ def calltae():
     print(body["number"])
     print(body["text"])
     
-    callback(body);
-
     #replytae(intent,body,reply_token)
 
     return body
 
 @app.route("/callback", methods=['POST'])
-def callback(x):
+def callback():
     # body = request.get_data(as_text=True)
     # print(body)
     req = request.get_json(silent=True, force=True)
@@ -43,14 +41,14 @@ def callback(x):
     print('intent = ' + intent)
     print('reply_token = ' + reply_token)
 
-    reply(intent,text,reply_token,id,disname,x)
+    reply(intent,text,reply_token,id,disname)
 
     return 'OK'
 
 
-def reply(intent,text,reply_token,id,disname,jsonword):
+def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
-        text_message = TextSendMessage(text=(jsonword["text"]+"dzd"+jsonword["number"]))
+        text_message = TextSendMessage(text=json["text"]+"  2121313213  "+ json["number"])
         line_bot_api.reply_message(reply_token,text_message)
 
 # def replytae(intent,body,reply_token):
