@@ -20,12 +20,14 @@ def calltae():
     print(body["number"])
     print(body["text"])
     
+    callback(body);
+
     #replytae(intent,body,reply_token)
 
     return body
 
 @app.route("/callback", methods=['POST'])
-def callback():
+def callback(x):
     # body = request.get_data(as_text=True)
     # print(body)
     req = request.get_json(silent=True, force=True)
@@ -41,14 +43,14 @@ def callback():
     print('intent = ' + intent)
     print('reply_token = ' + reply_token)
 
-    reply(intent,text,reply_token,id,disname)
+    reply(intent,text,reply_token,id,disname,x)
 
     return 'OK'
 
 
-def reply(intent,text,reply_token,id,disname):
+def reply(intent,text,reply_token,id,disname,jsonword):
     if intent == 'intent 3':
-        text_message = TextSendMessage(text=json["text"]+"  2121313213  "+ json["text"])
+        text_message = TextSendMessage(text=(jsonword["text"]+"dzd"+jsonword["number"]))
         line_bot_api.reply_message(reply_token,text_message)
 
 # def replytae(intent,body,reply_token):
