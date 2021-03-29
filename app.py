@@ -16,8 +16,6 @@ def hello():
 @app.route("/calltae", methods=['POST'])
 def calltae():
     body = request.get_json(silent=True, force=True)
-    intent = body["queryResult"]["intent"]["displayName"]
-    reply_token = body['originalDetectIntentRequest']['payload']['data']['replyToken']
     json = body
     print(body["number"])
     print(body["text"])
