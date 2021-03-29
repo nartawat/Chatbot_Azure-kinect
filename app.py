@@ -14,7 +14,14 @@ def hello():
 @app.route("/calltae", methods=['POST'])
 def calltae():
     body = request.get_json(silent=True, force=True)
+    intent = body["queryResult"]["intent"]["displayName"]
+    reply_token = body['originalDetectIntentRequest']['payload']['data']['replyToken']
+    
     print(body["number"])
+    print(body["text"])
+    
+    replytae(intent,body,reply_token)
+
     return body
 
 @app.route("/callback", methods=['POST'])
@@ -44,5 +51,11 @@ def reply(intent,text,reply_token,id,disname):
         text_message = TextSendMessage(text='ทดสอบสำเร็จแล้วนะครับ')
         line_bot_api.reply_message(reply_token,text_message)
 
+def replytae(intent,body,reply_token):
+    if intent == 'intent 3':
+        text_message = TextSendMessage(text=body["number"]+"   "+body["text"] + "56")
+        line_bot_api.reply_message(reply_token,text_message)
+
+        
 if __name__ == "__main__":
     app.run()
