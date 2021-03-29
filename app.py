@@ -7,6 +7,8 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('Lb5v+X5Hr1gdHa+6yFkWcxpPLlfCXVMqG+QXUIvjCN0HmftdNNl8NixyyDBmOGzVjNGzNGiB2koW10I8SEzSxijriRGZR1/G9n6FgqDvsLXrT2h++Y8LyYUYGadiOGixYj30nBHYnRAXwRmpdiU2FAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('97ea021104b6a2182af981ae780d0fb0')
 
+json = []
+
 @app.route('/')
 def hello():
     return "Hello Flask-Heroku"
@@ -16,11 +18,11 @@ def calltae():
     body = request.get_json(silent=True, force=True)
     intent = body["queryResult"]["intent"]["displayName"]
     reply_token = body['originalDetectIntentRequest']['payload']['data']['replyToken']
-    
+    json = body
     print(body["number"])
     print(body["text"])
     
-    replytae(intent,body,reply_token)
+    #replytae(intent,body,reply_token)
 
     return body
 
@@ -48,13 +50,13 @@ def callback():
 
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 2':
-        text_message = TextSendMessage(text='ทดสอบสำเร็จแล้วนะครับ')
+        text_message = TextSendMessage(text=json["text"]+"    "+ json["text"])
         line_bot_api.reply_message(reply_token,text_message)
 
-def replytae(intent,body,reply_token):
-    if intent == 'intent 3':
-        text_message = TextSendMessage(text=body["number"]+"   "+body["text"] + "56")
-        line_bot_api.reply_message(reply_token,text_message)
+# def replytae(intent,body,reply_token):
+#     if intent == 'intent 3':
+#         text_message = TextSendMessage(text=body["number"]+"   "+body["text"] + "56")
+#         line_bot_api.reply_message(reply_token,text_message)
 
         
 if __name__ == "__main__":
