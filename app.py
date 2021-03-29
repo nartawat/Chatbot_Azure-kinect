@@ -14,8 +14,8 @@ def hello():
 @app.route("/calltae", methods=['POST'])
 def calltae():
      body = request.get_data(as_text=True)
-     print(body)
-     return body;
+     print(body["number"])
+     return 'OK'
 
 @app.route("/callback", methods=['POST'])
 def callback():
