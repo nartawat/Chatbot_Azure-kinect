@@ -48,7 +48,7 @@ def callback():
 
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
-        text_message = TextSendMessage(text=json["text"]+"    "+ json["text"])
+        text_message = TextSendMessage(text=json["text"]+"  2121313213  "+ json["text"])
         line_bot_api.reply_message(reply_token,text_message)
 
 # def replytae(intent,body,reply_token):
