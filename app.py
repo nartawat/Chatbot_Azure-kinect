@@ -20,6 +20,7 @@ def calltae():
     text_file.close()
     print(body["number"])
     print(body["text"])
+    
     return body
 
 @app.route("/callback", methods=['POST'])
