@@ -2,12 +2,12 @@ from flask import Flask, request
 from linebot import *
 from linebot.models import *
 
-import pymongo as pm
-from bson.objectid import ObjectId
+# import pymongo as pm
+# from bson.objectid import ObjectId
 
-client = pm.MongoClient() 
-db = client['Chatbot']
-collection = db['Azure']
+# client = pm.MongoClient() 
+# db = client['Chatbot']
+# collection = db['Azure']
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ def hello():
 @app.route("/calltae", methods=['POST'])
 def calltae():
     body = request.get_json(silent=True, force=True)
-    collection.update_one({'_id': ObjectId("60647c4cecf771397d12225e")},  {'$set': {"number": body["number"]}})
+    # collection.update_one({'_id': ObjectId("60647c4cecf771397d12225e")},  {'$set': {"number": body["number"]}})
     print(body["number"])
     
     return body
@@ -50,8 +50,8 @@ def callback():
 
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
-        num = collection.find_one()
-        text_message = TextSendMessage(text=num)
+        # num = collection.find_one()
+        text_message = TextSendMessage(text="Heelo")
         line_bot_api.reply_message(reply_token,text_message)
 
         
