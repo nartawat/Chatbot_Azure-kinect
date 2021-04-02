@@ -2,12 +2,12 @@ from flask import Flask, request
 from linebot import *
 from linebot.models import *
 
-import pymongo
-from bson.objectid import ObjectId
+# import pymongo
+# from bson.objectid import ObjectId
 
-client = pymongo.MongoClient("mongodb+srv://chatbotazure:8ZDhcwsPc05AHYSr@cluster0.angf9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.Chatbot
-col = db["Azure"]
+# client = pymongo.MongoClient("mongodb+srv://chatbotazure:8ZDhcwsPc05AHYSr@cluster0.angf9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+# db = client.Chatbot
+# col = db["Azure"]
 
 
 app = Flask(__name__)
@@ -22,7 +22,7 @@ def hello():
 @app.route("/calltae", methods=['POST'])
 def calltae():
     body = request.get_json(silent=True, force=True)
-    col.update_one({'_id': ObjectId("606714605bf23384453618dd")},  {'$set': {"number": body["number"]}})
+    # col.update_one({'_id': ObjectId("606714605bf23384453618dd")},  {'$set': {"number": body["number"]}})
     print(body["number"])
     
     return body
@@ -51,8 +51,8 @@ def callback():
 
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
-        num = col.find_one()
-        text_message = TextSendMessage(text=num["number"])
+        # num = col.find_one()
+        text_message = TextSendMessage(text='sdf')
         line_bot_api.reply_message(reply_token,text_message)
 
         
