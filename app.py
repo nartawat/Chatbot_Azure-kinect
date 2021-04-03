@@ -6,8 +6,8 @@ import pymongo
 from bson.objectid import ObjectId
 
 client = pymongo.MongoClient("mongodb+srv://chatbotazure:8hGAO5k5OqOQIj9Y@cluster0.angf9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.Chatbot
-col = db["Azure"]
+db = client.Chai4chatbot
+col = db["AzureChat"]
 
 
 app = Flask(__name__)
@@ -53,10 +53,9 @@ def callback():
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
         data = col.find_one()
-        # Object = str(data['AlertObject'])
-        # Darkness = str(data['AlertDarkness'])
-        # text = "Todat's stats \n Alerts Object: "+Object+"times \n"+"Alerts Darkness" + Darkness
-        text = "hellowold"
+        Object = str(data['AlertObject'])
+        Darkness = str(data['AlertDarkness'])
+        text = "Todat's stats \n Alerts Object: "+Object+"times \n"+"Alerts Darkness" + Darkness
         text_message = TextSendMessage(text=text)
         line_bot_api.reply_message(reply_token,text_message)
 
