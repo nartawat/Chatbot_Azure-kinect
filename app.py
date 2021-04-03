@@ -5,7 +5,7 @@ from linebot.models import *
 import pymongo
 from bson.objectid import ObjectId
 
-client = pymongo.MongoClient("mongodb+srv://chatbotazure:8ZDhcwsPc05AHYSr@cluster0.angf9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+client = pymongo.MongoClient("mongodb+srv://chatbotazure:8hGAO5k5OqOQIj9Y@cluster0.angf9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.Chatbot
 col = db["Azure"]
 
