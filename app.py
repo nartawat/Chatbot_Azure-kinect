@@ -55,7 +55,7 @@ def reply(intent,text,reply_token,id,disname):
         data = col.find_one()
         Object = str(data['AlertObject'])
         Darkness = str(data['AlertDarkness'])
-        text = "Todat's stats \n Alerts Object: "+Object+" times \n"+"Alerts Darkness" + Darkness +" times"
+        text = "Todat's stats \n Alerts Object: "+Object+" times \n"+"Alerts Darkness: " + Darkness +" times"
         text_message = TextSendMessage(text=text)
         line_bot_api.reply_message(reply_token,text_message)
 
