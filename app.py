@@ -53,9 +53,10 @@ def callback():
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
         data = col.find_one()
-        Object = str(data['AlertObject'])
-        Darkness = str(data['AlertDarkness'])
-        text = "Todat's stats \n Alerts Object: "+Object+"times \n"+"Alerts Darkness" + Darkness
+        # Object = str(data['AlertObject'])
+        # Darkness = str(data['AlertDarkness'])
+        # text = "Todat's stats \n Alerts Object: "+Object+"times \n"+"Alerts Darkness" + Darkness
+        text = "hellowold"
         text_message = TextSendMessage(text=text)
         line_bot_api.reply_message(reply_token,text_message)
 
