@@ -19,10 +19,11 @@ handler = WebhookHandler('97ea021104b6a2182af981ae780d0fb0')
 def hello():
     return "Hello Flask-Heroku"
 
-@app.route("/calltae", methods=['POST'])
+@app.route("/AzureDetect", methods=['POST'])
 def calltae():
     body = request.get_json(silent=True, force=True)
-    col.update_one({'_id': ObjectId("606714605bf23384453618dd")},  {'$set': {"number": body["number"]}})
+    col.update_one({'_id': ObjectId("606888f13c0d39b9e84bb784")},  {'$set': {"AlertObject": body["AlertObject"]}})
+    col.update_one({'_id': ObjectId("606888f13c0d39b9e84bb784")},  {'$set': {"AlertDarkness": body["AlertDarkness"]}})
     print(body["number"])
     
     return body
@@ -51,9 +52,10 @@ def callback():
 
 def reply(intent,text,reply_token,id,disname):
     if intent == 'intent 3':
-        num = col.find_one()
-        number = str(num["number"])
-        text = "แจ้งเตือน"+number+"ครั้ง"
+        data = col.find_one()
+        Object = str(data["AlertObject"])
+        Darkness = str(data["AlertDarkness"])
+        text = "Todat's stats \n Alerts Object: "+Object+"times \n"+"Alerts Darkness" + Darkness
         text_message = TextSendMessage(text=text)
         line_bot_api.reply_message(reply_token,text_message)
 
